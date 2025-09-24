@@ -1,0 +1,41 @@
+# Build directories
+build/
+debug/
+release/
+
+# Generated files
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+
+# Test resource files
+*.txt
+*.dat
+*.bin
+*.cfg
+*.xml
+
+# IDE files
+.vscode/
+.vs/
+*.vcxproj*
+*.sln
+
+# Test executable
+test_console
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Temporary files
+*~
+*.swp
+*.tmp
