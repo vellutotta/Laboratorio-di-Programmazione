@@ -1,0 +1,57 @@
+using namespace std;
+
+class Observer {
+public:
+    virtual ~Observer() = default;
+    virtual void update(float progress) = 0;
+};
+
+class Subject{
+public:
+    virtual void addObserver(Observer* obs) =0;
+    virtual void removeObserver(Observer* obs) =0;
+    virtual void notifyObserver(float progress) =0;
+    virtual ~Subject() {}
+};
+
+class Oggetto : public Subject{
+private:
+    float progress = 0.0f;
+    vector<Observer*> ob;
+public:
+    void addObserver(Observer* obs) override {
+        ob.push_back(obs);
+    }
+    void removeObserver(Observer* obs) override{
+        ob.remove(obs);
+    }    
+    void notifyObserver(float progress) override{
+        for (auto& obs : ob) {
+            obs->update(progress);
+        }
+    }  
+
+
+}
+
+class ProgressBar : public Observer{
+private:
+    sf::RectangleShape 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
