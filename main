@@ -1,44 +1,48 @@
+
+#include<iostream>
+#include<SFML/Graphics.hpp>
+#include<SFML/System.hpp>
+#include<SFML/Window.hpp>
+#include<thread>
+#include <vector>
+#include <chrono>
+#include "timer.h"
+
 using namespace std;
+using namespace sf;
 
-class Observer {
-public:
-    virtual ~Observer() = default;
-    virtual void update(float progress) = 0;
-};
 
-class Subject{
-public:
-    virtual void addObserver(Observer* obs) =0;
-    virtual void removeObserver(Observer* obs) =0;
-    virtual void notifyObserver(float progress) =0;
-    virtual ~Subject() {}
-};
 
-class Oggetto : public Subject{
-private:
-    float progress = 0.0f;
-    vector<Observer*> ob;
-public:
-    void addObserver(Observer* obs) override {
-        ob.push_back(obs);
-    }
-    void removeObserver(Observer* obs) override{
-        ob.remove(obs);
-    }    
-    void notifyObserver(float progress) override{
-        for (auto& obs : ob) {
-            obs->update(progress);
+int main() {
+
+    RenderWindow window(VideoMode(800, 600), "Progress Bar");
+
+    SFMLProgressBar progressBar(200, 300, 400, 30);
+
+    Timer timer(5.0f); // 5 secondi di durata
+    timer.addObserver(&progressBar);
+
+
+    timer.start();
+
+    while (window.isOpen()) {
+        Event event;
+
+
+        while (window.pollEvent(event)) {                     //mi restituisce true se c'è un evento disponibile
+            if (event.type == Event::Closed) {
+                window.close();
+                timer.stop();
+            }
         }
-    }  
 
+        window.clear(Color(0,0,0));
+        progressBar.draw(window);
+        window.display();
+    }
 
+    return 0;
 }
-
-class ProgressBar : public Observer{
-private:
-    sf::RectangleShape 
-
-
 
 
 
