@@ -3,19 +3,24 @@ project(untitled)
 
 set(CMAKE_CXX_STANDARD 17)
 
+
 set(SFML_DIR "C:/Users/carlo/CLionProjects/untitled/SFML-2.6.1/lib/cmake/SFML")
 
+
 find_package(SFML 2.6 REQUIRED COMPONENTS graphics window system)
+
 
 add_executable(untitled main.cpp
         timer.cpp
         timer.h)
+
 
 target_link_libraries(untitled
         sfml-graphics
         sfml-window
         sfml-system
 )
+
 
 target_include_directories(untitled PRIVATE "C:/Users/carlo/CLionProjects/untitled/SFML-2.6.1/include")
 
@@ -36,15 +41,33 @@ add_custom_command(TARGET untitled POST_BUILD
 
 
 
+
+
+
 #Google Test
 include(FetchContent)
 FetchContent_Declare(
         googletest
         URL https://github.com/google/googletest/archive/refs/heads/main.zip
+        DOWNLOAD_EXTRACT_TIMESTAMP TRUE
 )
 FetchContent_MakeAvailable(googletest)
 
 
-add_executable(runTests tests/test_main.cpp)
-target_link_libraries(runTests gtest_main)
+add_executable(runTests tests/test_main.cpp timer.cpp
+        tests/tesst_timer.cpp)
+target_link_libraries(runTests
+        gtest_main
+        sfml-graphics
+        sfml-window
+        sfml-system
+)
+
+target_include_directories(runTests PRIVATE "C:/Users/carlo/CLionProjects/untitled/SFML-2.6.1/include")
+
 target_include_directories(runTests PRIVATE ${PROJECT_SOURCE_DIR})
+
+
+
+
+
