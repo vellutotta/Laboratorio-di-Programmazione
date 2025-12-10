@@ -55,7 +55,7 @@ FetchContent_MakeAvailable(googletest)
 
 
 add_executable(runTests tests/test_main.cpp timer.cpp
-        tests/tesst_timer.cpp)
+        )
 target_link_libraries(runTests
         gtest_main
         sfml-graphics
