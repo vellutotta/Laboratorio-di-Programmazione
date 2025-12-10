@@ -41,7 +41,7 @@ void Timer::start() {
             auto currentTime = chrono::steady_clock::now();
             auto elapsed = chrono::duration_cast<chrono::milliseconds>(currentTime - startTime);
 
-            // Calcolo la % correlata, e se supera 100 la forzo a 100
+            
             progress = (elapsed.count() / (duration * 1000.0f)) * 100.0f;
             if (progress > 100.0f) progress = 100.0f;
 
